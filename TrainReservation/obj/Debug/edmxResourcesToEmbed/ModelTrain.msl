@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainModelStoreContainer" CdmEntityContainer="TrainEntities">
+    <EntitySetMapping Name="Relation">
+      <EntityTypeMapping TypeName="TrainModel.Relation">
+        <MappingFragment StoreEntitySet="Relation">
+          <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+          <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+          <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+          <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+          <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+          <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SittingPlace">
+      <EntityTypeMapping TypeName="TrainModel.SittingPlace">
+        <MappingFragment StoreEntitySet="SittingPlace">
+          <ScalarProperty Name="Id_place" ColumnName="Id_place" />
+          <ScalarProperty Name="Nr_car" ColumnName="Nr_car" />
+          <ScalarProperty Name="Nr_siting" ColumnName="Nr_siting" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Station">
+      <EntityTypeMapping TypeName="TrainModel.Station">
+        <MappingFragment StoreEntitySet="Station">
+          <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+          <ScalarProperty Name="Name_station" ColumnName="Name_station" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket">
+      <EntityTypeMapping TypeName="TrainModel.Ticket">
+        <MappingFragment StoreEntitySet="Ticket">
+          <ScalarProperty Name="Id_tic" ColumnName="Id_tic" />
+          <ScalarProperty Name="Id_place" ColumnName="Id_place" />
+          <ScalarProperty Name="Id_relation1" ColumnName="Id_relation1" />
+          <ScalarProperty Name="Id_relation2" ColumnName="Id_relation2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelationStation">
+      <EntityTypeMapping TypeName="TrainModel.RelationStation">
+        <MappingFragment StoreEntitySet="RelationStation">
+          <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+          <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+          <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+          <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+          <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+          <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+          <ScalarProperty Name="Name_station" ColumnName="Name_station" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TravelInfo">
+      <EntityTypeMapping TypeName="TrainModel.TravelInfo">
+        <MappingFragment StoreEntitySet="TravelInfo">
+          <ScalarProperty Name="Nr_car" ColumnName="Nr_car" />
+          <ScalarProperty Name="Nr_siting" ColumnName="Nr_siting" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="timeleave" ColumnName="timeleave" />
+          <ScalarProperty Name="FromStation" ColumnName="FromStation" />
+          <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+          <ScalarProperty Name="ToStation" ColumnName="ToStation" />
+          <ScalarProperty Name="km" ColumnName="km" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Connection">
+      <EntityTypeMapping TypeName="TrainModel.Connection">
+        <MappingFragment StoreEntitySet="Connection">
+          <ScalarProperty Name="TimeTravel" ColumnName="TimeTravel" />
+          <ScalarProperty Name="km" ColumnName="km" />
+          <ScalarProperty Name="Name_station2" ColumnName="Name_station2" />
+          <ScalarProperty Name="NumberStation2" ColumnName="NumberStation2" />
+          <ScalarProperty Name="TimeCome2" ColumnName="TimeCome2" />
+          <ScalarProperty Name="Distance2" ColumnName="Distance2" />
+          <ScalarProperty Name="Id_station2" ColumnName="Id_station2" />
+          <ScalarProperty Name="Id_relation2" ColumnName="Id_relation2" />
+          <ScalarProperty Name="NameStationFrom" ColumnName="NameStationFrom" />
+          <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+          <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+          <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+          <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+          <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

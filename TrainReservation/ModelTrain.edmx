@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Relation">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+          </Key>
+          <Property Name="Id_relation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_station" Type="int" Nullable="false" />
+          <Property Name="Distance" Type="float" />
+          <Property Name="TimeCome" Type="datetime" />
+          <Property Name="TimeLeave" Type="datetime" />
+          <Property Name="NumberStation" Type="int" Nullable="false" />
+          <Property Name="Nr_line" Type="int" Nullable="false" />
+          <Property Name="Nr_relation" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SittingPlace">
+          <Key>
+            <PropertyRef Name="Id_place" />
+          </Key>
+          <Property Name="Id_place" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nr_car" Type="int" />
+          <Property Name="Nr_siting" Type="int" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Id_station" />
+          </Key>
+          <Property Name="Id_station" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_station" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Id_tic" />
+          </Key>
+          <Property Name="Id_tic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_place" Type="int" />
+          <Property Name="Id_relation1" Type="int" />
+          <Property Name="Id_relation2" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Train.dbo.Connection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Connection">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+            <PropertyRef Name="Id_station" />
+            <PropertyRef Name="NumberStation" />
+            <PropertyRef Name="Nr_line" />
+            <PropertyRef Name="Nr_relation" />
+            <PropertyRef Name="NameStationFrom" />
+            <PropertyRef Name="Id_relation2" />
+            <PropertyRef Name="Id_station2" />
+            <PropertyRef Name="NumberStation2" />
+            <PropertyRef Name="Name_station2" />
+          </Key>
+          <Property Name="Id_relation" Type="int" Nullable="false" />
+          <Property Name="Id_station" Type="int" Nullable="false" />
+          <Property Name="Distance" Type="float" />
+          <Property Name="TimeLeave" Type="datetime" />
+          <Property Name="NumberStation" Type="int" Nullable="false" />
+          <Property Name="Nr_line" Type="int" Nullable="false" />
+          <Property Name="Nr_relation" Type="int" Nullable="false" />
+          <Property Name="NameStationFrom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_relation2" Type="int" Nullable="false" />
+          <Property Name="Id_station2" Type="int" Nullable="false" />
+          <Property Name="Distance2" Type="float" />
+          <Property Name="TimeCome2" Type="datetime" />
+          <Property Name="NumberStation2" Type="int" Nullable="false" />
+          <Property Name="Name_station2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="km" Type="float" />
+          <Property Name="TimeTravel" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Train.dbo.RelationStation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RelationStation">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+            <PropertyRef Name="Id_station" />
+            <PropertyRef Name="NumberStation" />
+            <PropertyRef Name="Nr_line" />
+            <PropertyRef Name="Nr_relation" />
+            <PropertyRef Name="Name_station" />
+          </Key>
+          <Property Name="Id_relation" Type="int" Nullable="false" />
+          <Property Name="Id_station" Type="int" Nullable="false" />
+          <Property Name="Distance" Type="float" />
+          <Property Name="TimeCome" Type="datetime" />
+          <Property Name="TimeLeave" Type="datetime" />
+          <Property Name="NumberStation" Type="int" Nullable="false" />
+          <Property Name="Nr_line" Type="int" Nullable="false" />
+          <Property Name="Nr_relation" Type="int" Nullable="false" />
+          <Property Name="Name_station" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Train.dbo.TravelInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TravelInfo">
+          <Key>
+            <PropertyRef Name="Nr_siting" />
+            <PropertyRef Name="FromStation" />
+            <PropertyRef Name="ToStation" />
+          </Key>
+          <Property Name="Nr_car" Type="int" />
+          <Property Name="Nr_siting" Type="int" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="10" />
+          <Property Name="timeleave" Type="datetime" />
+          <Property Name="FromStation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeCome" Type="datetime" />
+          <Property Name="ToStation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="km" Type="float" />
+        </EntityType>
+        <Association Name="FK__Relation__Id_sta__3B75D760">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Relation" Type="Self.Relation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="Id_station" />
+            </Principal>
+            <Dependent Role="Relation">
+              <PropertyRef Name="Id_station" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_place__3E52440B">
+          <End Role="SittingPlace" Type="Self.SittingPlace" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SittingPlace">
+              <PropertyRef Name="Id_place" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_relat__3F466844">
+          <End Role="Relation" Type="Self.Relation" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Relation">
+              <PropertyRef Name="Id_relation" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_relation1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_relat__403A8C7D">
+          <End Role="Relation" Type="Self.Relation" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Relation">
+              <PropertyRef Name="Id_relation" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_relation2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrainModelStoreContainer">
+          <EntitySet Name="Relation" EntityType="Self.Relation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SittingPlace" EntityType="Self.SittingPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Connection" EntityType="Self.Connection" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Connection].[Id_relation] AS [Id_relation], 
+    [Connection].[Id_station] AS [Id_station], 
+    [Connection].[Distance] AS [Distance], 
+    [Connection].[TimeLeave] AS [TimeLeave], 
+    [Connection].[NumberStation] AS [NumberStation], 
+    [Connection].[Nr_line] AS [Nr_line], 
+    [Connection].[Nr_relation] AS [Nr_relation], 
+    [Connection].[NameStationFrom] AS [NameStationFrom], 
+    [Connection].[Id_relation2] AS [Id_relation2], 
+    [Connection].[Id_station2] AS [Id_station2], 
+    [Connection].[Distance2] AS [Distance2], 
+    [Connection].[TimeCome2] AS [TimeCome2], 
+    [Connection].[NumberStation2] AS [NumberStation2], 
+    [Connection].[Name_station2] AS [Name_station2], 
+    [Connection].[km] AS [km], 
+    [Connection].[TimeTravel] AS [TimeTravel]
+    FROM [dbo].[Connection] AS [Connection]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RelationStation" EntityType="Self.RelationStation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RelationStation].[Id_relation] AS [Id_relation], 
+    [RelationStation].[Id_station] AS [Id_station], 
+    [RelationStation].[Distance] AS [Distance], 
+    [RelationStation].[TimeCome] AS [TimeCome], 
+    [RelationStation].[TimeLeave] AS [TimeLeave], 
+    [RelationStation].[NumberStation] AS [NumberStation], 
+    [RelationStation].[Nr_line] AS [Nr_line], 
+    [RelationStation].[Nr_relation] AS [Nr_relation], 
+    [RelationStation].[Name_station] AS [Name_station]
+    FROM [dbo].[RelationStation] AS [RelationStation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TravelInfo" EntityType="Self.TravelInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TravelInfo].[Nr_car] AS [Nr_car], 
+    [TravelInfo].[Nr_siting] AS [Nr_siting], 
+    [TravelInfo].[Class] AS [Class], 
+    [TravelInfo].[timeleave] AS [timeleave], 
+    [TravelInfo].[FromStation] AS [FromStation], 
+    [TravelInfo].[TimeCome] AS [TimeCome], 
+    [TravelInfo].[ToStation] AS [ToStation], 
+    [TravelInfo].[km] AS [km]
+    FROM [dbo].[TravelInfo] AS [TravelInfo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Relation__Id_sta__3B75D760" Association="Self.FK__Relation__Id_sta__3B75D760">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Relation" EntitySet="Relation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_place__3E52440B" Association="Self.FK__Ticket__Id_place__3E52440B">
+            <End Role="SittingPlace" EntitySet="SittingPlace" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_relat__3F466844" Association="Self.FK__Ticket__Id_relat__3F466844">
+            <End Role="Relation" EntitySet="Relation" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_relat__403A8C7D" Association="Self.FK__Ticket__Id_relat__403A8C7D">
+            <End Role="Relation" EntitySet="Relation" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Relation">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+          </Key>
+          <Property Name="Id_relation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_station" Type="Int32" Nullable="false" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="TimeCome" Type="DateTime" Precision="3" />
+          <Property Name="TimeLeave" Type="DateTime" Precision="3" />
+          <Property Name="NumberStation" Type="Int32" Nullable="false" />
+          <Property Name="Nr_line" Type="Int32" Nullable="false" />
+          <Property Name="Nr_relation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Station" Relationship="Self.FK__Relation__Id_sta__3B75D760" FromRole="Relation" ToRole="Station" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__Id_relat__3F466844" FromRole="Relation" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__Id_relat__403A8C7D" FromRole="Relation" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="SittingPlace">
+          <Key>
+            <PropertyRef Name="Id_place" />
+          </Key>
+          <Property Name="Id_place" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nr_car" Type="Int32" />
+          <Property Name="Nr_siting" Type="Int32" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__Id_place__3E52440B" FromRole="SittingPlace" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Id_station" />
+          </Key>
+          <Property Name="Id_station" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Relation" Relationship="Self.FK__Relation__Id_sta__3B75D760" FromRole="Station" ToRole="Relation" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Id_tic" />
+          </Key>
+          <Property Name="Id_tic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_place" Type="Int32" />
+          <Property Name="Id_relation1" Type="Int32" />
+          <Property Name="Id_relation2" Type="Int32" />
+          <NavigationProperty Name="Relation" Relationship="Self.FK__Ticket__Id_relat__3F466844" FromRole="Ticket" ToRole="Relation" />
+          <NavigationProperty Name="Relation1" Relationship="Self.FK__Ticket__Id_relat__403A8C7D" FromRole="Ticket" ToRole="Relation" />
+          <NavigationProperty Name="SittingPlace" Relationship="Self.FK__Ticket__Id_place__3E52440B" FromRole="Ticket" ToRole="SittingPlace" />
+        </EntityType>
+        <EntityType Name="RelationStation">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+            <PropertyRef Name="Id_station" />
+            <PropertyRef Name="NumberStation" />
+            <PropertyRef Name="Nr_line" />
+            <PropertyRef Name="Nr_relation" />
+            <PropertyRef Name="Name_station" />
+          </Key>
+          <Property Name="Id_relation" Type="Int32" Nullable="false" />
+          <Property Name="Id_station" Type="Int32" Nullable="false" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="TimeCome" Type="DateTime" Precision="3" />
+          <Property Name="TimeLeave" Type="DateTime" Precision="3" />
+          <Property Name="NumberStation" Type="Int32" Nullable="false" />
+          <Property Name="Nr_line" Type="Int32" Nullable="false" />
+          <Property Name="Nr_relation" Type="Int32" Nullable="false" />
+          <Property Name="Name_station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TravelInfo">
+          <Key>
+            <PropertyRef Name="Nr_siting" />
+            <PropertyRef Name="FromStation" />
+            <PropertyRef Name="ToStation" />
+          </Key>
+          <Property Name="Nr_car" Type="Int32" />
+          <Property Name="Nr_siting" Type="Int32" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="timeleave" Type="DateTime" Precision="3" />
+          <Property Name="FromStation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimeCome" Type="DateTime" Precision="3" />
+          <Property Name="ToStation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="km" Type="Double" />
+        </EntityType>
+        <Association Name="FK__Relation__Id_sta__3B75D760">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Relation" Type="Self.Relation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="Id_station" />
+            </Principal>
+            <Dependent Role="Relation">
+              <PropertyRef Name="Id_station" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_relat__3F466844">
+          <End Role="Relation" Type="Self.Relation" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Relation">
+              <PropertyRef Name="Id_relation" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_relation1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_relat__403A8C7D">
+          <End Role="Relation" Type="Self.Relation" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Relation">
+              <PropertyRef Name="Id_relation" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_relation2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Id_place__3E52440B">
+          <End Role="SittingPlace" Type="Self.SittingPlace" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SittingPlace">
+              <PropertyRef Name="Id_place" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Id_place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrainEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Relation" EntityType="Self.Relation" />
+          <EntitySet Name="SittingPlace" EntityType="Self.SittingPlace" />
+          <EntitySet Name="Station" EntityType="Self.Station" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="RelationStation" EntityType="Self.RelationStation" />
+          <EntitySet Name="TravelInfo" EntityType="Self.TravelInfo" />
+          <AssociationSet Name="FK__Relation__Id_sta__3B75D760" Association="Self.FK__Relation__Id_sta__3B75D760">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Relation" EntitySet="Relation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_relat__3F466844" Association="Self.FK__Ticket__Id_relat__3F466844">
+            <End Role="Relation" EntitySet="Relation" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_relat__403A8C7D" Association="Self.FK__Ticket__Id_relat__403A8C7D">
+            <End Role="Relation" EntitySet="Relation" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Id_place__3E52440B" Association="Self.FK__Ticket__Id_place__3E52440B">
+            <End Role="SittingPlace" EntitySet="SittingPlace" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <EntitySet Name="Connection" EntityType="TrainModel.Connection" />
+        </EntityContainer>
+        <EntityType Name="Connection">
+          <Key>
+            <PropertyRef Name="Id_relation" />
+            <PropertyRef Name="Id_station" />
+            <PropertyRef Name="NumberStation" />
+            <PropertyRef Name="Nr_line" />
+            <PropertyRef Name="Nr_relation" />
+            <PropertyRef Name="NameStationFrom" />
+            <PropertyRef Name="Id_relation2" />
+            <PropertyRef Name="Id_station2" />
+            <PropertyRef Name="NumberStation2" />
+            <PropertyRef Name="Name_station2" />
+          </Key>
+          <Property Name="Id_relation" Type="Int32" Nullable="false" />
+          <Property Name="Id_station" Type="Int32" Nullable="false" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="TimeLeave" Type="DateTime" Precision="3" />
+          <Property Name="NumberStation" Type="Int32" Nullable="false" />
+          <Property Name="Nr_line" Type="Int32" Nullable="false" />
+          <Property Name="Nr_relation" Type="Int32" Nullable="false" />
+          <Property Name="NameStationFrom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_relation2" Type="Int32" Nullable="false" />
+          <Property Name="Id_station2" Type="Int32" Nullable="false" />
+          <Property Name="Distance2" Type="Double" />
+          <Property Name="TimeCome2" Type="DateTime" Precision="3" />
+          <Property Name="NumberStation2" Type="Int32" Nullable="false" />
+          <Property Name="Name_station2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="km" Type="Double" />
+          <Property Name="TimeTravel" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrainModelStoreContainer" CdmEntityContainer="TrainEntities">
+          <EntitySetMapping Name="Relation">
+            <EntityTypeMapping TypeName="TrainModel.Relation">
+              <MappingFragment StoreEntitySet="Relation">
+                <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+                <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+                <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+                <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+                <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+                <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SittingPlace">
+            <EntityTypeMapping TypeName="TrainModel.SittingPlace">
+              <MappingFragment StoreEntitySet="SittingPlace">
+                <ScalarProperty Name="Id_place" ColumnName="Id_place" />
+                <ScalarProperty Name="Nr_car" ColumnName="Nr_car" />
+                <ScalarProperty Name="Nr_siting" ColumnName="Nr_siting" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Station">
+            <EntityTypeMapping TypeName="TrainModel.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+                <ScalarProperty Name="Name_station" ColumnName="Name_station" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="TrainModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="Id_tic" ColumnName="Id_tic" />
+                <ScalarProperty Name="Id_place" ColumnName="Id_place" />
+                <ScalarProperty Name="Id_relation1" ColumnName="Id_relation1" />
+                <ScalarProperty Name="Id_relation2" ColumnName="Id_relation2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelationStation">
+            <EntityTypeMapping TypeName="TrainModel.RelationStation">
+              <MappingFragment StoreEntitySet="RelationStation">
+                <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+                <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+                <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+                <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+                <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+                <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+                <ScalarProperty Name="Name_station" ColumnName="Name_station" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelInfo">
+            <EntityTypeMapping TypeName="TrainModel.TravelInfo">
+              <MappingFragment StoreEntitySet="TravelInfo">
+                <ScalarProperty Name="Nr_car" ColumnName="Nr_car" />
+                <ScalarProperty Name="Nr_siting" ColumnName="Nr_siting" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="timeleave" ColumnName="timeleave" />
+                <ScalarProperty Name="FromStation" ColumnName="FromStation" />
+                <ScalarProperty Name="TimeCome" ColumnName="TimeCome" />
+                <ScalarProperty Name="ToStation" ColumnName="ToStation" />
+                <ScalarProperty Name="km" ColumnName="km" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Connection">
+            <EntityTypeMapping TypeName="TrainModel.Connection">
+              <MappingFragment StoreEntitySet="Connection">
+                <ScalarProperty Name="TimeTravel" ColumnName="TimeTravel" />
+                <ScalarProperty Name="km" ColumnName="km" />
+                <ScalarProperty Name="Name_station2" ColumnName="Name_station2" />
+                <ScalarProperty Name="NumberStation2" ColumnName="NumberStation2" />
+                <ScalarProperty Name="TimeCome2" ColumnName="TimeCome2" />
+                <ScalarProperty Name="Distance2" ColumnName="Distance2" />
+                <ScalarProperty Name="Id_station2" ColumnName="Id_station2" />
+                <ScalarProperty Name="Id_relation2" ColumnName="Id_relation2" />
+                <ScalarProperty Name="NameStationFrom" ColumnName="NameStationFrom" />
+                <ScalarProperty Name="Nr_relation" ColumnName="Nr_relation" />
+                <ScalarProperty Name="Nr_line" ColumnName="Nr_line" />
+                <ScalarProperty Name="NumberStation" ColumnName="NumberStation" />
+                <ScalarProperty Name="TimeLeave" ColumnName="TimeLeave" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Id_station" ColumnName="Id_station" />
+                <ScalarProperty Name="Id_relation" ColumnName="Id_relation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
