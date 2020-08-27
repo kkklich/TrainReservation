@@ -60,7 +60,7 @@ namespace TrainReservation
             string date = "";
             if (cmb_from.SelectedIndex > -1 & cmb_to.SelectedIndex > -1)
             {
-                 date = "z: " + cmb_from.Text.ToString() + "  do: " + cmb_to.Text.ToString() + " dnia: " + datapic1.SelectedDate.ToString() + " o godz: " + txt_hour.Text + " min: " + txt_minute.Text;
+                 date = "z: " + cmb_from.Text.ToString() + "  do : " + cmb_to.Text.ToString() + " dnia: " + datapic1.SelectedDate.ToString() + " o godz: " + txt_hour.Text + " min: " + txt_minute.Text;
                 
                 int hour = int.Parse(txt_hour.Text);
                 int minute = int.Parse(txt_minute.Text);
@@ -73,7 +73,7 @@ namespace TrainReservation
 
                 Station stationTo = (Station)cmb_to.SelectedItem;
 
-                ListTrain listTrain1 = new ListTrain(db,fulltime,stationfrom,stationTo);
+                ListTrain listTrain1 = new ListTrain(frame1,db,fulltime,stationfrom,stationTo);
                 frame1.Content = listTrain1;
             }
 

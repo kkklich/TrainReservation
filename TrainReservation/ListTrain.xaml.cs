@@ -22,6 +22,7 @@ namespace TrainReservation
     public partial class ListTrain : Page
     {
         TrainEntities db;
+        Frame frame1;
 
         public ListTrain()
         {
@@ -31,10 +32,11 @@ namespace TrainReservation
           
         }
 
-        public ListTrain(TrainEntities db,DateTime fulltime,Station station1,Station station2)
+        public ListTrain(Frame frame1, TrainEntities db,DateTime fulltime,Station station1,Station station2)
         {
             InitializeComponent();
             this.db = db;
+            this.frame1 = frame1;
 
             DateTimeFormatInfo dateformat = new CultureInfo("pl-PL").DateTimeFormat;
 
@@ -46,6 +48,13 @@ namespace TrainReservation
             
             listView.ItemsSource = linqsearchTravel.ToList();
             
+
+        }
+
+        private void btn_choose_Click(object sender, RoutedEventArgs e)
+        {
+            ChosePlace chosePlace1 = new ChosePlace();
+            frame1.Content = chosePlace1;
 
         }
     }

@@ -30,6 +30,7 @@
         <Label x:Name="label_Copy2" Content="Godzina:" HorizontalAlignment="Left" Height="34" Margin="94,267,0,0" VerticalAlignment="Top" Width="89" FontSize="20"/>
         <Label x:Name="label_Copy3" Content="Minuta:" HorizontalAlignment="Left" Height="34" Margin="205,267,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
         <Button x:Name="btn_Search"     Content="Szukaj" HorizontalAlignment="Left" Height="49" Margin="454,337,0,0" VerticalAlignment="Top" Width="137" Click="btn_Search_Click_1"  />
+        <Button x:Name="btn_admin" Content="Admin" HorizontalAlignment="Left" Height="41" Margin="636,24,0,0" VerticalAlignment="Top" Width="117"/>
 
 
     </Grid>

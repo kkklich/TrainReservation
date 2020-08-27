@@ -23,7 +23,7 @@
             </ListView.View>
         </ListView>
         <Label x:Name="label" Content="Lista połączeń" HorizontalAlignment="Left" Height="30" Margin="73,19,0,0" VerticalAlignment="Top" Width="263"/>
-        <Button x:Name="btn_choose" Content="Dalej" HorizontalAlignment="Left" Height="33" Margin="551,374,0,0" VerticalAlignment="Top" Width="151"/>
+        <Button x:Name="btn_choose" Content="Dalej" HorizontalAlignment="Left" Height="33" Margin="551,374,0,0" VerticalAlignment="Top" Width="151" Click="btn_choose_Click"/>
 
     </Grid>
 </Page>

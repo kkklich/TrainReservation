@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChosePlace.xaml.cs">
+      <DependentUpon>ChosePlace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cities.cs" />
     <Compile Include="Connection.cs">
       <DependentUpon>ModelTrain.tt</DependentUpon>
@@ -107,6 +110,10 @@
     <Compile Include="TravelInfo.cs">
       <DependentUpon>ModelTrain.tt</DependentUpon>
     </Compile>
+    <Page Include="ChosePlace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListTrain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

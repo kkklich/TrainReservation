@@ -23,3 +23,5 @@ C:\Users\rysio\source\repos\TrainReservation\TrainReservation\bin\Debug\EntityFr
 C:\Users\rysio\source\repos\TrainReservation\TrainReservation\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\rysio\source\repos\TrainReservation\TrainReservation\obj\Debug\TrainReservation_Content.g.cs
 C:\Users\rysio\source\repos\TrainReservation\TrainReservation\obj\Debug\TrainReservation.csproj.CopyComplete
+C:\Users\rysio\source\repos\TrainReservation\TrainReservation\obj\Debug\ChosePlace.g.cs
+C:\Users\rysio\source\repos\TrainReservation\TrainReservation\obj\Debug\ChosePlace.baml
